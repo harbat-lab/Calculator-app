@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calculator - Harbart</title>
-  <style>
-    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; }
-    .calc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 300px; margin: auto; background: #161b22; padding: 20px; border-radius: 15px; }
-    input { width: 100%; height: 60px; font-size: 24px; grid-column: span 4; }
-    button { width: 60px; height: 60px; font-size: 20px; }
-    .equals { background: #238636; color: white; grid-column: span 2; }
-    .theme-btn { position: absolute; top: 20px; right: 20px; padding: 10px; }
-    
-    /* Dark theme CSS */
-    body.dark { background: #0d1117; }
-    body.dark .calc { background: #2d2d2d; color: white; }
-    body.dark input { background: #444; color: white; }
-    body.dark button { background: #333; color: white; }
-
+  <title>Calculator - H
+<style>
+body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f0f0; }
+.calc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 300px; padding: 20px; background: #222; border-radius: 10px; }
+input { grid-column: span 4; width: 100%; height: 60px; font-size: 24px; text-align: right; padding: 10px; border: none; border-radius: 5px; margin-bottom: 10px; }
+button { width: 100%; height: 60px; font-size: 20px; border: none; border-radius: 5px; cursor: pointer; }
+.equals { grid-column: span 2; background: #238636; color: white; }
+.theme-btn { position: absolute; top: 20px; right: 20px; padding: 10px; }
+body.dark { background: #0d1117; }
+body.dark .calc { background: #2d2d2d; }
+body.dark input { background: #444; color: white; }
+body.dark button { background: #333; color: white; }
+body.dark .theme-btn { background: #555; }
+</style>
  body.dark .theme-btn { background: #555; color: ... }
 </style>  
- <button onclick="clearDisplay()">C</button>
  <button onclick="clearDisplay()">C</button>
  <div class="calc">
  <input type="text" id="display" disabled>
     <button onclick="append('2')">2</button>
     <button onclick="append('3')">3</button>
     <button class="equals" onclick="calculate()">=</button>
-    <br>
+    
     
     <button onclick="append('.')">.</button>
   <div class="calc">
-  <script>
+  
     let display = document.getElementById('display');
     function append(val) { display.value += val; }
     function clearDisplay() { display.value = ''; }
