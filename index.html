@@ -7,7 +7,12 @@
     .calc {background: #161b22; padding: 20px; border-radius: 15px;}
     input {width: 100%; height: 60px; font-size: 24px; text-align: right; margin-bottom: 10px; border: none; border-radius: 8px; background: #0d1117; color: white; padding: 10px;}
     button {width: 60px; height: 60px; font-size: 20px; margin: 5px; border: none; border-radius: 8px; background: #21262d; color: #c9d1d9;}
-    .equals {background: #238636; color: white;}
+    .equals {background: #238636; color: white;}.theme-btn {padding: 10px 20px; margin: 15px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; background: #eee;}
+body.dark {background: #1a1a1a;}
+body.dark .calc {background: #2d2d2d; color: white;}
+body.dark input {background: #444; color: white;}
+body.dark button {background: #333; color: white;}
+body.dark .theme-btn {background: #555; color: white;}
   </style>
 </head>
 <body>
@@ -45,6 +50,26 @@
     function clearDisplay() { display.value = ''; }
     function del() { display.value = display.value.slice(0, -1); }
     function calculate() { display.value = eval(display.value); }
-  </script>
+  </script>// Theme toggle
+const toggleBtn = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load saved theme on refresh
+if(localStorage.getItem('theme') === 'dark') {
+  body.classList.add('dark');
+  toggleBtn.textContent = '☀️ Light Mode';
+}
+
+// Switch theme on click
+toggleBtn.onclick = () => {
+  body.classList.toggle('dark');
+  if(body.classList.contains('dark')) {
+    toggleBtn.textContent = '☀️ Light Mode';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    toggleBtn.textContent = '🌙 Dark Mode';
+    localStorage.setItem('theme', 'light');
+  }
+};
 </body>
 </html>
