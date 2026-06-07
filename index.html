@@ -104,9 +104,20 @@ body.light .history { background: #e0e0e0; color: #333; }
 let display = document.getElementById('display')
 </div>
  function append(val) { display.value += val; }
- function clearDisplay() { display.value = ''; }
  function del() { display.value = display.value.slice(0, -1); }
- function calculate() {                                                                                                     try {let calc = display.value; let result = eval(calc); addToHistory(calc, result); // <-- ADD THIS LINE
+function calculate() {
+  try {
+   let calc = display.value;
+   let result = eval(calc);
+    addToHistory(calc, result);
+   display.value = result;
+  } catch {
+    display.value = 'Error';
+   }
+ }
+ function toggleTheme() {
+ function del() { display.value = display.value.slice(0, -1); }
+ function calculate() {                   
     display.value = result;
   } catch {
     display.value = 'Error';
