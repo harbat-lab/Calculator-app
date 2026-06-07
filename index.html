@@ -91,7 +91,8 @@ body.light .history { background: #e0e0e0; color: #333; }
   <button onclick="append('2')">2</button>
   <button onclick="append('3')">3</button>
   <button onclick="append('+')">+</button>
-  
+  <input type="text" id="display" readonly>
+<div class="buttons">
   <button onclick="append('0')">0</button>
   <button onclick="append('.')">.</button>
   <button class="equals" onclick="calculate()">=</button>
@@ -102,7 +103,6 @@ body.light .history { background: #e0e0e0; color: #333; }
  </div>
  <script>
 let display = document.getElementById('display');
-
 function append(val) { display.value += val; }
  function del() { display.value = display.value.slice(0, -1); }
 function calculate() {
