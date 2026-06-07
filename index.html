@@ -20,10 +20,15 @@
 body.dark .calc {background: #2d2d2d; color: white;}
 body.dark input {background: #444; color: white;}
 body.dark button {background: #333; color: white;}
-body.dark .theme-btn {background: #555; color: white;}
-  </style>
+body.dark .theme-btn {background: #555; color: white
+</head>
+</style>
 </head>
 <body>
+  
+
+
+
 <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
 <div class="calc">
 
@@ -58,7 +63,9 @@ body.dark .theme-btn {background: #555; color: white;}
     function clearDisplay() { display.value = ''; }
     function del() { display.value = display.value.slice(0, -1); }
     function calculate() { display.value = eval(display.value); }
-  </script>// Theme toggle
+  </script>
+<script>
+// Theme toggle
 const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
 
@@ -79,5 +86,6 @@ toggleBtn.onclick = () => {
     localStorage.setItem('theme', 'light');
   }
 };
+</script>
 </body>
 </html>
