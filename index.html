@@ -49,8 +49,20 @@ button:hover { background: #444; }
 <body>.equals {
   grid-column: span 2;
   background: #238636;
-}
 .equals:hover { background: #2ea043; }
+
+.history {
+ margin-top: 20px;
+   padding: 15px;
+ background: #2a2a2a;
+border-radius: 10px;
+color: white;
+ max-width: 400px;
+ margin: 20px auto 0;
+}
+.history h3 { margin: 0 0 10px 0; font-size: 16px; }
+ .history div { font-size: 14px; color: #aaa; line-height: 1.6; }
+body.light .history { background: #e0e0e0; color: #333; }
 </style>
 </head>
 <body>
@@ -91,16 +103,22 @@ button:hover { background: #444; }
  <script>
 let display = document.getElementById('display')
 </div>
-
-let display = document.getElementById('display');
-
  function append(val) { display.value += val; }
  function clearDisplay() { display.value = ''; }
  function del() { display.value = display.value.slice(0, -1); }
  function calculate() {
  try { display.value = eval(display.value); }
  catch { display.value = 'Error'; }
+  function calculate() {
+  try {
+    let calc = display.value;
+    let result = eval(calc);
+    addToHistory(calc, result); // ADD THIS LINE
+    display.value = result;
+  } catch {
+    display.value = 'Error';
   }
+ }
  function toggleTheme() {
   document.body.classList.toggle('light');
   let btn = document.querySelector('.toggle');
@@ -115,14 +133,20 @@ let key = e.key;
   }
    else if (key === 'Enter' || key === '=') {
     calculate();
-  }
-   else if (key === 'Backspace') {
+else if (key === 'Backspace') {
    del();
  }
   else if (key === 'Escape' || key.toLowerCase() === 'c') {
    clearDisplay();
- }
 });
+let history = [];
+function addToHistory(calc, result) {
+  history.unshift(calc + ' = ' + result);
+  if (history.length > 5) history.pop();
+  
+  let html = history.map(item => '<div>' + item + '</div>').join('');
+  document.getElementById('historyList').innerHTML = html;
+   }
 </script>
 </body>
 </html>
