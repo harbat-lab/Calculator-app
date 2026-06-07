@@ -93,13 +93,31 @@ let display = document.getElementById('display');
  function calculate() {
  try { display.value = eval(display.value); }
  catch { display.value = 'Error'; }
- }
-function toggleTheme() {
- document.body.classList.toggle('light');
- let btn = document.querySelector('.toggle');
+  }
+ function toggleTheme() {
+  document.body.classList.toggle('light');
+  let btn = document.querySelector('.toggle');
   btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
  }
+ 
+document.addEventListener('keydown', function(e) {
+let key = e.key;
+  
+ if (key >= '0' && key <= '9' || ['+', '-', '*', '/', '.', '%'].includes(key)) {
+   append(key);
+  }
+   else if (key === 'Enter' || key === '=') {
+    calculate();
+  }
+   else if (key === 'Backspace') {
+   del();
+ }
+  else if (key === 'Escape' || key.toLowerCase() === 'c') {
+   clearDisplay();
+ }
+});
 </script>
 </body>
 </html>
+
 
