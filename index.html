@@ -1,28 +1,25 @@
 <!DOCTYPE html>
-<html
-  <head>
+<html>
+<head>
   <title>Calculator - Harbart</title>
   <style>
-    body { ... }
-    .calc { ... }
-    body.dark .theme-btn { ... }
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; }
+    .calc { background: #161b22; padding: 20px; border-radius: 15px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 300px; }
+    input { width: 100%; height: 60px; font-size: 24px; grid-column: span 4; }
+    button { width: 60px; height: 60px; font-size: 20px; }
+    .equals { background: #238636; color: white; grid-column: span 2; }
+    .theme-btn { position: absolute; top: 20px; right: 20px; padding: 10px; }
+    
+    /* Dark theme CSS */
+    body.dark { background: #0d1117; }
+    body.dark .calc { background: #2d2d2d; color: white; }
+    body.dark input { background: #444; color: white; }
+    body.dark button { background: #333; color: white; }
+    body.dark .theme-btn { background: #555; color: white; }
   </style>
 </head>
 <body>
-  dark .calc {background: #2d2d2d; color: white;}
-body.dark input {background: #444; color: white;}
-body.dark button {background: #333; color: white;}
-body.dark .theme-btn {background: #555; color: white
-</head>
-</style>
-</head>
-<body>
-  
-
-
-
-<button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
-<div class="calc">
+  <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
 
     <input type="text" id="display" readonly>
     <br>
