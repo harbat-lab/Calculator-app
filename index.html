@@ -15,21 +15,13 @@
     body.dark .calc { background: #2d2d2d; color: white; }
     body.dark input { background: #444; color: white; }
     body.dark button { background: #333; color: white; }
-    body.dark .theme-btn { background: #555; color: white; }
-  </style>
-</head>
-<body>
-  <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
-
-    <input type="text" id="display" readonly>
-    <br>
+    body.dark .theme-btn { background: #555; color: white; 
     <button onclick="clearDisplay()">C</button>
-    <button onclick="append('/')">/</button>
-    <button onclick="append('*')">*</button>
-    <button onclick="del()">DEL</button>
-    <br>
-    <button onclick="append('7')">7</button>
-    <button onclick="append('8')">8</button>
+    <div class="calc">
+  <input type="text" id="display" disabled>
+  <button>C</button>
+  <button>/</button>
+  ...first row of buttons...
     <button onclick="append('9')">9</button>
     <button onclick="append('-')">-</button>
     <br>
