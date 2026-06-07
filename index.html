@@ -1,61 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calculator - H
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</harbat>
 <style>
-body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0f0f0; }
-.calc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 300px; padding: 20px; background: #222; border-radius: 10px; }
-input { grid-column: span 4; width: 100%; height: 60px; font-size: 24px; text-align: right; padding: 10px; border: none; border-radius: 5px; margin-bottom: 10px; }
-button { width: 100%; height: 60px; font-size: 20px; border: none; border-radius: 5px; cursor: pointer; }
-.equals { grid-column: span 2; background: #238636; color: white; }
-.theme-btn { position: absolute; top: 20px; right: 20px; padding: 10px; }
-body.dark { background: #0d1117; }
-body.dark .calc { background: #2d2d2d; }
-body.dark input { background: #444; color: white; }
-body.dark button { background: #333; color: white; }
-body.dark .theme-btn { background: #555; }
-</style>
- body.dark .theme-btn { background: #555; color: ... }
-</style>  
- <button onclick="clearDisplay()">C</button>
- <div class="calc">
- <input type="text" id="display" disabled>
-    <button onclick="append('2')">2</button>
-    <button onclick="append('3')">3</button>
-    <button class="equals" onclick="calculate()">=</button>
-    
-    
-    <button onclick="append('.')">.</button>
-  <div class="calc">
-  
-    let display = document.getElementById('display');
-    function append(val) { display.value += val; }
-    function clearDisplay() { display.value = ''; }
-    function del() { display.value = display.value.slice(0, -1); }
-    function calculate() { display.value = eval(display.value); }
-  </script>
-<script>
-// Theme toggle
-const toggleBtn = document.getElementById('theme-toggle');
-const body = document.body;
-
-// Load saved theme on refresh
-if(localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark');
-  toggleBtn.textContent = '☀️ Light Mode';
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #f0f0f0;
+  font-family: Arial;
 }
+.calc {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 300px;
+  padding: 20px;
+  background: #222;
+  border-radius: 10px;
+}
+input {
+  grid-column: span 4;
+  width: 100%;
+  height: 60px;
+  font-size: 24px;
+  text-align: right;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+button {
+  width: 100%;
+  height: 60px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #333;
+  color: white;
+}
+button:hover { background: #444; }
+.equals {
+  grid-column: span 2;
+  background: #238636;
+}
+.equals:hover { background: #2ea043; }
+</style>
+</head>
+<body>
+<div class="calc">
+  <input type="text" id="display" disabled>
+  
+  <button onclick="clearDisplay()">C</button>
+  <button onclick="del()">DEL</button>
+  <button onclick="append('%')">%</button>
+  <button onclick="append('/')">/</button>
+  
+  <button onclick="append('7')">7</button>
+  <button onclick="append('8')">8</button>
+  <button onclick="append('9')">9</button>
+  <button onclick="append('*')">*</button>
+  
+  <button onclick="append('4')">4</button>
+  <button onclick="append('5')">5</button>
+  <button onclick="append('6')">6</button>
+  <button onclick="append('-')">-</button>
+  
+  <button onclick="append('1')">1</button>
+  <button onclick="append('2')">2</button>
+  <button onclick="append('3')">3</button>
+  <button onclick="append('+')">+</button>
+  
+  <button onclick="append('0')">0</button>
+  <button onclick="append('.')">.</button>
+  <button class="equals" onclick="calculate()">=</button>
+</div>
 
-// Switch theme on click
-toggleBtn.onclick = () => {
-  body.classList.toggle('dark');
-  if(body.classList.contains('dark')) {
-    toggleBtn.textContent = '☀️ Light Mode';
-    localStorage.setItem('theme', 'dark');
-  } else {
-    toggleBtn.textContent = '🌙 Dark Mode';
-    localStorage.setItem('theme', 'light');
-  }
-};
+<script>
+let display = document.getElementById('display');
+function append(val) { display.value += val; }
+function clearDisplay() { display.value = ''; }
+function del() { display.value = display.value.slice(0, -1); }
+function calculate() { 
+  try { display.value = eval(display.value); } 
+  catch { display.value = 'Error'; } 
+}
 </script>
 </body>
 </html>
