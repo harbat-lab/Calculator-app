@@ -83,8 +83,15 @@ button:hover { background: #444; }
   <button onclick="append('0')">0</button>
   <button onclick="append('.')">.</button>
   <button class="equals" onclick="calculate()">=</button>
+ </div>
+<div class="history">
+ <h3>History</h3>
+ <div id="historyList">No calculations yet</div>
+ </div>
+ <script>
+let display = document.getElementById('display')
 </div>
-<script>
+
 let display = document.getElementById('display');
 
  function append(val) { display.value += val; }
