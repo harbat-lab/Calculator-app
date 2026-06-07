@@ -115,15 +115,7 @@ function calculate() {
     display.value = 'Error';
    }
  }
- function toggleTheme() {
- function del() { display.value = display.value.slice(0, -1); }
- function calculate() {                   
-    display.value = result;
-  } catch {
-    display.value = 'Error';
-  }
-   
-   function toggleTheme() {
+  function toggleTheme() {
   document.body.classList.toggle('light');
   let btn = document.querySelector('.toggle');
   btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
