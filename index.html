@@ -101,9 +101,9 @@ body.light .history { background: #e0e0e0; color: #333; }
  <div id="historyList">No calculations yet</div>
  </div>
  <script>
-let display = document.getElementById('display')
-</div>
- function append(val) { display.value += val; }
+let display = document.getElementById('display');
+
+function append(val) { display.value += val; }
  function del() { display.value = display.value.slice(0, -1); }
 function calculate() {
   try {
