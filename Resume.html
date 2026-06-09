@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Harbart Resume Builder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{background:#000;color:#0f0;font-family:monospace;padding:20px}
+input,textarea{width:100%;padding:10px;margin:8px 0;background:#111;color:#0f0;border:2px solid #0f0;font-family:monospace}
+button{padding:12px 20px;margin:5px;background:#0f0;color:#000;border:none;font-weight:bold;cursor:pointer}
+#preview{background:#111;border:2px solid #0f0;padding:20px;margin-top:20px;text-align:left}
+h1,h2{color:#0f0;text-align:center}
+</style>
+</head>
+<body>
+<h1>📄 MATRIX RESUME BUILDER</h1>
+
+<h2>Your Info</h2>
+<input id="name" placeholder="Full Name">
+<input id="title" placeholder="Job Title - e.g. Web Developer">
+<input id="email" placeholder="Email">
+<input id="phone" placeholder="Phone">
+
+<h2>About You</h2>
+<textarea id="about" rows="3" placeholder="1 line about yourself"></textarea>
+
+<h2>Skills</h2>
+<input id="skills" placeholder="HTML, CSS, JavaScript - separate with commas">
+
+<button onclick="generate()">GENERATE RESUME</button>
+<button onclick="window.print()">PRINT / SAVE PDF</button>
+<button onclick="window.location.href='index.html'">BACK</button>
+
+<div id="preview">
+<h2 id="p_name">Your Name</h2>
+<h3 id="p_title">Job Title</h3>
+<p id="p_contact">email | phone</p>
+<hr>
+<p id="p_about">About you...</p>
+<h3>SKILLS</h3>
+<p id="p_skills">Skills here</p>
+</div>
+
+<script>
+function generate(){
+document.getElementById('p_name').innerText = document.getElementById('name').value || 'Your Name';
+document.getElementById('p_title').innerText = document.getElementById('title').value || 'Job Title';
+document.getElementById('p_contact').innerText = document.getElementById('email').value + ' | ' + document.getElementById('phone').value;
+document.getElementById('p_about').innerText = document.getElementById('about').value || 'About you...';
+document.getElementById('p_skills').innerText = document.getElementById('skills').value || 'Skills here';
+}
+</script>
+</body>
+</html>
