@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harbart PassGen</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
+body { 
+  background: #000;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; margin: 0;
+  font-family: 'Courier Prime', monospace;
+}
+
+.gen { 
+  background: #0a0a0a;
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+  padding: 25px;
+  width: 340px;
+  box-shadow: 0 0 20px #00ff00, inset 0 0 20px rgba(0,255,0,0.1);
+}
+
+h1 { 
+  color: #00ff00; 
+  text-align: center; 
+  font-size: 20px; 
+  margin: 0 0 20px 0;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+.output { 
+  width: 100%;
+  background: #000;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+  font-family: 'Courier Prime', monospace;
+  font-size: 16px;
+  padding: 15px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px #00ff00;
+  word-break: break-all;
+  min-height: 50px;
+}
+
+.controls { 
+  margin: 15px 0;
+  color: #00ff00;
+  font-size: 14px;
+}
+
+.controls input[type="range"] { 
+  width: 100%;
+  accent-color: #00ff00;
+}
+
+.checkbox { 
+  margin: 10px 0;
+}
+
+.checkbox input { 
+  accent-color: #00ff00;
+}
+
+button { 
+  width: 100%;
+  height: 50px;
+  background: #000;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+  font-family: 'Courier Prime', monospace;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.1s;
+}
+
+button:hover { 
+  background: #00ff00;
+  color: #000;
+  box-shadow: 0 0 15px #00ff00;
+}
+
+.strength { 
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #00ff00;
+}
+
+.copy-btn { 
+  background: #00ff00;
+  color: #000;
+}
+</style>
+</head>
+<body>
+<div class="gen">
+  <h1>// PASSWORD TERMINAL v1.0</h1>
+  
+  <div class="output" id="password">Click GENERATE</div>
+  
+  <div class="controls">
+    Length: <span id="lenVal">16</span>
+    <input type="range" id="length" min="8" max="32" value="16">
+  </div>
+  
+  <div class="checkbox">
+    <input type="checkbox" id="upper" checked>
+    <label>ABC... Uppercase</label>
+  </div>
+  
+  <div class="checkbox">
+    <input type="checkbox" id="lower" checked>
+    <label>abc... Lowercase</label>
+  </div>
+  
+  <div class="checkbox">
+    <input type="checkbox" id="numbers" checked>
+    <label>123... Numbers</label>
+  </div>
+  
+  <div class="checkbox">
+    <input type="checkbox" id="symbols" checked>
+    <label>!@#$... Symbols</label>
+  </div>
+  
+  <button onclick="generate()">GENERATE</button>
+  <button class="copy-btn" onclick="copyPass()">COPY</button>
+  
+  <div class="strength" id="strength">Strength: --</div>
+</div>
+
+<script>
+const chars = {
+  upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  lower: 'abcdefghijklmnopqrstuvwxyz',
+  numbers: '0123456789',
+  symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+};
+
+document.getElementById('length').oninput = function() {
+  document.getElementById('lenVal').textContent = this.value;
+}
+
+function generate() {
+  let len = document.getElementById('length').value;
+  let charset = '';
+  
+  if(document.getElementById('upper').checked) charset += chars.upper;
+  if(document.getElementById('lower').checked) charset += chars.lower;
+  if(document.getElementById('numbers').checked) charset += chars.numbers;
+  if(document.getElementById('symbols').checked) charset += chars.symbols;
+  
+  if(charset === '') {
+    document.getElementById('password').textContent = 'SELECT AT LEAST 1 TYPE';
+    return;
+  }
+  
+  let pass = '';
+  for(let i = 0; i < len; i++) {
+    pass += charset.charAt(Math.floor(Math.random() * charset.length));
+  }
+  
+  document.getElementById('password').textContent = pass;
+  checkStrength(pass);
+}
+
+function copyPass() {
+  let pass = document.getElementById('password').textContent;
+  navigator.clipboard.writeText(pass);
+  alert('COPIED TO CLIPBOARD');
+}
+
+function checkStrength(pass) {
+  let score = pass.length;
+  if(/[A-Z]/.test(pass)) score += 5;
+  if(/[a-z]/.test(pass)) score += 5;
+  if(/[0-9]/.test(pass)) score += 5;
+  if(/[^A-Za-z0-9]/.test(pass)) score += 10;
+  
+  let text = score > 30 ? 'STRONG' : score > 20 ? 'MEDIUM' : 'WEAK';
+  document.getElementById('strength').textContent = 'Strength: ' + text;
+}
+</script>
+</body>
+</html>
