@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Harbart Resume Builder</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Resume Builder</title>
 <style>
-body{background:#000;color:#0f0;font-family:monospace;padding:20px}
-input,textarea{width:100%;padding:10px;margin:8px 0;background:#111;color:#0f0;border:2px solid #0f0;font-family:monospace}
+body{background:#000;color:#0f0;font-family:monospace;text-align:center;padding:20px}
+input,textarea{width:80%;padding:10px;margin:5px;background:#111;color:#0f0;border:1px solid #0f0}
 button{padding:12px 20px;margin:5px;background:#0f0;color:#000;border:none;font-weight:bold;cursor:pointer}
-#preview{background:#111;border:2px solid #0f0;padding:20px;margin-top:20px;text-align:left}
+#preview{background:#111;border:2px solid #0f0;margin-top:20px;padding:20px;text-align:left}
 h1,h2{color:#0f0;text-align:center}
+hr{border-color:#0f0}
 </style>
 </head>
 <body>
@@ -19,18 +19,20 @@ h1,h2{color:#0f0;text-align:center}
 <input id="title" placeholder="Job Title - e.g. Web Developer">
 <input id="email" placeholder="Email">
 <input id="phone" placeholder="Phone">
+
 <h2>About You</h2>
+<textarea id="about" rows="3" placeholder="1 line about yourself - e.g. I build Matrix apps"></textarea>
+
 <h3>Experience</h3>
-<input type="text" id="job1" placeholder="Job 1 - e.g. Web Dev Intern">
-<input type="text" id="job1desc" placeholder="What you did">
-<textarea id="about" rows="3" placeholder="1 line about yourself"></textarea>
+<input type="text" id="job1" placeholder="Job 1 - e.g. Web Dev Intern at XYZ">
+<input type="text" id="job1desc" placeholder="What you did there - 1 line">
 
 <h2>Skills</h2>
-<input id="skills" placeholder="HTML, CSS, JavaScript - separate with commas">
+<input id="skills" placeholder="HTML, CSS, JavaScript">
 
 <button onclick="generate()">GENERATE RESUME</button>
 <button onclick="window.print()">PRINT / SAVE PDF</button>
-<button onclick="window.location.href='index.html'">BACK</button>
+<button onclick="window.location.href='index.html'">← BACK TO MENU</button>
 
 <div id="preview">
 <h2 id="p_name">Your Name</h2>
@@ -38,17 +40,19 @@ h1,h2{color:#0f0;text-align:center}
 <p id="p_contact">email | phone</p>
 <hr>
 <p id="p_about">About you...</p>
-+ `<p><b>${job1.value}</b><br>${job1desc.value}</p>`
+<div id="p_exp"></div>
 <h3>SKILLS</h3>
 <p id="p_skills">Skills here</p>
 </div>
+
 <script>
 function generate(){
-document.getElementById('p_name').innerText = document.getElementById('name').value || 'Your Name';
-document.getElementById('p_title').innerText = document.getElementById('title').value || 'Job Title';
-document.getElementById('p_contact').innerText = document.getElementById('email').value + ' | ' + document.getElementById('phone').value;
-document.getElementById('p_about').innerText = document.getElementById('about').value || 'About you...';
-document.getElementById('p_skills').innerText = document.getElementById('skills').value || 'Skills here';
+  document.getElementById('p_name').innerText = document.getElementById('name').value;
+  document.getElementById('p_title').innerText = document.getElementById('title').value;
+  document.getElementById('p_contact').innerText = document.getElementById('email').value + ' | ' + document.getElementById('phone').value;
+  document.getElementById('p_about').innerText = document.getElementById('about').value;
+  document.getElementById('p_exp').innerHTML = `<p><b>${document.getElementById('job1').value}</b><br>${document.getElementById('job1desc').value}</p>`;
+  document.getElementById('p_skills').innerText = document.getElementById('skills').value;
 }
 </script>
 </body>
