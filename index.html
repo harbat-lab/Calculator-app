@@ -54,7 +54,7 @@ button:hover { background: #444; }
 .history {
  margin-top: 20px;
    padding: 15px;
- background: #2a2a2a;
+ background: #2a2a2a; up
 border-radius: 10px;
 color: white;
  max-width: 400px;
@@ -102,37 +102,60 @@ body.light .history { background: #e0e0e0; color: #333; }
  <div id="historyList">No calculations yet</div>
  </div>
  <script>
-let display = document.getElementById('display');
-function append(val) { display.value += val; }
- function del() { display.value = display.value.slice(0, -1); }
+let display = document.getElementById('display'); // Add this at top
+let history = [];
+
+function append(val) { 
+  display.value += val; 
+}
+
+function del() { 
+  display.value = display.value.slice(0, -1); // Fixed
+}
+
+function clearDisplay() { 
+  display.value = ''; // Added this
+}
+
 function calculate() {
   try {
-   let calc = display.value;
-   let result = eval(calc);
+    let calc = display.value;
+    let result = eval(calc);
     addToHistory(calc, result);
-   display.value = result;
+    display.value = result;
   } catch {
     display.value = 'Error';
-   }
- }
+    setTimeout(() => clearDisplay(), 1000);
+  }
+}
+
+function toggleTheme() { // Made this a function
   document.body.classList.toggle('light');
   let btn = document.querySelector('.toggle');
-  btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
- }
- 
+  btn.textContent = document.body.classList.contains('light') ? '🌙' : '☀️';
+}
+
+function addToHistory(calc, result) {
+  history.unshift(calc + ' = ' + result);
+  if (history.length > 5) history.pop();
+  let html = history.map(item => '<div>' + item + '</div>').join('');
+  document.getElementById('historyList').innerHTML = html;
+}
+
 document.addEventListener('keydown', function(e) {
-let key = e.key;
-  
- if (key >= '0' && key <= '9' || ['+', '-', '*', '/', '.', '%'].includes(key)) {
-   append(key);
+  let key = e.key;
+  if (key >= '0' && key <= '9' || ['+', '-', '*', '/', '.'].includes(key)) {
+    append(key);
   }
-   else if (key === 'Enter' || key === '=') {
+  else if (key === 'Enter' || key === '=') {
     calculate();
-else if (key === 'Backspace') {
-   del();
- }
+  }
+  else if (key === 'Backspace') {
+    del();
+  }
   else if (key === 'Escape' || key.toLowerCase() === 'c') {
-   clearDisplay();
+    clearDisplay();
+  }
 });
 let history = [];
 function addToHistory(calc, result) {
