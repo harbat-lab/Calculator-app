@@ -19,8 +19,10 @@ h1,h2{color:#0f0;text-align:center}
 <input id="title" placeholder="Job Title - e.g. Web Developer">
 <input id="email" placeholder="Email">
 <input id="phone" placeholder="Phone">
-
 <h2>About You</h2>
+<h3>Experience</h3>
+<input type="text" id="job1" placeholder="Job 1 - e.g. Web Dev Intern">
+<input type="text" id="job1desc" placeholder="What you did">
 <textarea id="about" rows="3" placeholder="1 line about yourself"></textarea>
 
 <h2>Skills</h2>
@@ -36,10 +38,10 @@ h1,h2{color:#0f0;text-align:center}
 <p id="p_contact">email | phone</p>
 <hr>
 <p id="p_about">About you...</p>
++ `<p><b>${job1.value}</b><br>${job1desc.value}</p>`
 <h3>SKILLS</h3>
 <p id="p_skills">Skills here</p>
 </div>
-
 <script>
 function generate(){
 document.getElementById('p_name').innerText = document.getElementById('name').value || 'Your Name';
