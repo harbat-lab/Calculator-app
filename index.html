@@ -50,35 +50,26 @@ button:hover { background: #444; }
   grid-column: span 2;
   background: #238636;
 .equals:hover { background: #2ea043; }
-
+<body>
 .history {
  margin-top: 20px;
    padding: 15px;
- background: #2a2a2a; up
-border-radius: 10px;
+ border-radius: 10px;
 color: white;
- <body>
-
-<div class="calc">
+ <div class="calc">
  <button class="toggle" onclick="toggleTheme()">🌙</button>  
-<input type="text" id="display" disabled>  
-  
-  
   <button onclick="clearDisplay()">C</button>
   <button onclick="del()">DEL</button>
   <button onclick="append('%')">%</button>
   <button onclick="append('/')">/</button>
-  
   <button onclick="append('7')">7</button>
   <button onclick="append('8')">8</button>
   <button onclick="append('9')">9</button>
   <button onclick="append('*')">*</button>
-  
   <button onclick="append('4')">4</button>
   <button onclick="append('5')">5</button>
   <button onclick="append('6')">6</button>
   <button onclick="append('-')">-</button>
-  
   <button onclick="append('1')">1</button>
   <button onclick="append('2')">2</button>
   <button onclick="append('3')">3</button>
@@ -96,19 +87,15 @@ color: white;
  <script>
 let display = document.getElementById('display'); // Add this at top
 let history = [];
-
 function append(val) { 
   display.value += val; 
 }
-
 function del() { 
   display.value = display.value.slice(0, -1); // Fixed
 }
-
 function clearDisplay() { 
   display.value = ''; // Added this
 }
-
 function calculate() {
   try {
     let calc = display.value;
@@ -120,20 +107,17 @@ function calculate() {
     setTimeout(() => clearDisplay(), 1000);
   }
 }
-
 function toggleTheme() { // Made this a function
   document.body.classList.toggle('light');
   let btn = document.querySelector('.toggle');
   btn.textContent = document.body.classList.contains('light') ? '🌙' : '☀️';
 }
-
 function addToHistory(calc, result) {
   history.unshift(calc + ' = ' + result);
   if (history.length > 5) history.pop();
   let html = history.map(item => '<div>' + item + '</div>').join('');
   document.getElementById('historyList').innerHTML = html;
 }
-
 document.addEventListener('keydown', function(e) {
   let key = e.key;
   if (key >= '0' && key <= '9' || ['+', '-', '*', '/', '.'].includes(key)) {
@@ -153,8 +137,7 @@ let history = [];
 function addToHistory(calc, result) {
   history.unshift(calc + ' = ' + result);
   if (history.length > 5) history.pop();
-  
-  let html = history.map(item => '<div>' + item + '</div>').join('');
+   let html = history.map(item => '<div>' + item + '</div>').join('');
   document.getElementById('historyList').innerHTML = html;
    }
 </script>
