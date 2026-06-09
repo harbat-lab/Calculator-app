@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Matrix Timer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{background:#000;color:#0f0;font-family:monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0}
+#display{font-size:72px;margin:30px;text-shadow:0 0 20px #0f0}
+input{width:60px;padding:10px;font-size:24px;background:#111;color:#0f0;border:2px solid #0f0;text-align:center;margin:5px}
+button{padding:15px 30px;margin:10px;background:#0f0;color:#000;border:none;font-size:18px;font-weight:bold;cursor:pointer}
+button:active{background:#0a0}
+h1{margin-bottom:20px}
+</style>
+</head>
+<body>
+<h1>⏱️ MATRIX TIMER</h1>
+<div>
+<input id="min" type="number" value="5" min="0">M
+<input id="sec" type="number" value="0" min="0" max="59">S
+</div>
+<div id="display">05:00</div>
+<button onclick="start()">START</button>
+<button onclick="pause()">PAUSE</button>
+<button onclick="reset()">RESET</button>
+<button onclick="window.location.href='index.html'">BACK</button>
+
+<script>
+let t, running=false, sec=300;
+function upd(){let m=Math.floor(sec/60),s=sec%60;document.getElementById('display').innerText=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`}
+function start(){if(running)return;let m=parseInt(document.getElementById('min').value),s=parseInt(document.getElementById('sec').value);if(!running)sec=m*60+s;running=true;t=setInterval(()=>{sec--;upd();if(sec<=0){clearInterval(t);running=false;alert('⏰ TIME UP! Agent Smith is here')}}1000)}
+function pause(){clearInterval(t);running=false}
+function reset(){pause();sec=300;document.getElementById('min').value=5;document.getElementById('sec').value=0;upd()}
+upd()
+</script>
+</body>
+</html>
